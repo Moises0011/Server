@@ -19,3 +19,15 @@ export class CreateAlunoController {
     }
   }
 }
+export class FindAlunoController {
+  async handle(request: Request, response: Response) {
+    try {
+      const aluno = await prismaClient.aluno.findMany({});
+
+      return response.json(aluno);
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json({ error: "Erro ao encontrar" });
+    }
+  }
+}
